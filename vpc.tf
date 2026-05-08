@@ -46,9 +46,10 @@ resource "aws_subnet" "public_zone1" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name"                                                 = "${local.env}-public-${local.zone1}"
-    "kubernetes.io/role/elb"                               = "1"
-    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
+    Name = "public-zone-1"
+
+    "kubernetes.io/cluster/staging-demo" = "shared"
+    "kubernetes.io/role/elb"             = "1"
   }
 }
 
@@ -59,9 +60,10 @@ resource "aws_subnet" "public_zone2" {
   map_public_ip_on_launch = true
 
   tags = {
-    "Name"                                                 = "${local.env}-public-${local.zone2}"
-    "kubernetes.io/role/elb"                               = "1"
-    "kubernetes.io/cluster/${local.env}-${local.eks_name}" = "owned"
+    Name = "public-zone-2"
+
+    "kubernetes.io/cluster/staging-demo" = "shared"
+    "kubernetes.io/role/elb"             = "1"
   }
 }
 resource "aws_eip" "nat" {
